@@ -44,8 +44,9 @@ function run_npm() {
   command="$1"
 
   cd $BUILD_DIR
-  [ ! -e "../logs" ] && mkdir ../logs || true
-  HOME="$BUILD_DIR" $VENDORED_NODE/bin/node $VENDORED_NPM/cli.js $command >> ../logs/staging_npm.log 2>&1 | indent
+  #[ ! -e "../logs" ] && mkdir ../logs || true
+  #HOME="$BUILD_DIR" $VENDORED_NODE/bin/node $VENDORED_NPM/cli.js $command >> ../logs/staging_npm.log 2>&1 | indent
+  HOME="$BUILD_DIR" $VENDORED_NODE/bin/node $VENDORED_NPM/cli.js $command >> ../staging_npm.log 2>&1 | indent
 
   if [ "${PIPESTATUS[*]}" != "0 0" ]; then
     echo " !     Failed to $command dependencies with npm"
